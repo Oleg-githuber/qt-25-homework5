@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(homework LANGUAGES CXX)
+project(homework5 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -27,7 +27,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 if(ANDROID)
-  add_library(homework SHARED
+  add_library(homework5 SHARED
     main.cpp
     mainwindow.cpp
     mainwindow.h
@@ -36,7 +36,7 @@ if(ANDROID)
     stopwatch.h
   )
 else()
-  add_executable(homework
+  add_executable(homework5
     main.cpp
     mainwindow.cpp
     mainwindow.h
@@ -46,4 +46,4 @@ else()
   )
 endif()
 
-target_link_libraries(homework PRIVATE Qt5::Widgets)
+target_link_libraries(homework5 PRIVATE Qt5::Widgets)

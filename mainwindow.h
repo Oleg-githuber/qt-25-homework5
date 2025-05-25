@@ -17,8 +17,6 @@ public:
     ~MainWindow();
 
 
-public slots:
-    void setTimerText(QString txt);
 
 
 
@@ -30,10 +28,11 @@ private:
     Stopwatch* stopwatch{nullptr};
 
     Ui::MainWindow *ui;
-    void clickStart();  // Обработка кнопки старт
-    void clickStop();   // Обработка кнопки стоп
-    void clickStartBtn();   // Обработка переключения кнопки Старт/Стоп
-    void addRound();    // Добавить круг
+
+private slots:
+    void setTimerText(QString txt); // Запись времени в Label
+    void addRound(QString txt);    // Добавить круг
+    void receiveBool(bool myBool);  // Прием состояния таймера
 
 };
 #endif // MAINWINDOW_H

@@ -9,24 +9,38 @@ class Stopwatch : public QObject
 {
     Q_OBJECT
 private:
+    unsigned long long tickValue{};
+    unsigned long long lastTickValue{};
+    QString timeStr{};  // Время таймера в виде строки
+    QTimer* timer; // Таймер
+    bool isRunning{};   // Состояние таймера (запущен / незапущен)
+    int roundNumber{};  // Номер круга
+    void startTimer();  // Пуск таймера
+    void stopTimer();   // Останов таймера
 
 public:
     Stopwatch();
-    QTimer* timer; // Таймер
-    void emitSignal(QString txt);   // Вызов сигнала
-    void startTimer();  // Запуск таймера
-    void stopTimer();   // Останов таймера
-    // Поля хранения временных переменных
-    int minutes{};
-    int seconds{};
-    int deciseconds{-1};
-    QString timeStr{};  // Время таймера в виде строки
 
-    void timeToStr();   // Преобразование времени в строку
-    void clearTimer();  // Очистка (обнуление) времени
+    void emitSignal(QString txt);   // Вызов сигнала
+
+    // Геттеры
+    QString getStr();
+    bool getRunning();
+
+    QString timeToStr(unsigned long long number);   // Преобразование времени в строку
+    void thisTimeToStr();
+    void clearTimer();  // Очистка (обнуление) времени4
 
 signals:
     void sendSignalToWin(QString txt);
+    void timeOut();
+    void sendTextToBrouser(QString txt);
+    void sendBool(bool myBool);
+
+public slots:
+    void slotStart();
+    void slotRound();
+    void slotClear();
 };
 
 #endif // STOPWATCH_H
